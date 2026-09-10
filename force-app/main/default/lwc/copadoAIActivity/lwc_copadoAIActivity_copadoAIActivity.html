@@ -1,0 +1,71 @@
+<template>
+    <lightning-card title="Copado AI Activity Dashboard" icon-name="utility:einstein">
+        <div class="slds-m-around_medium">
+
+            <template if:true={isLoading}>
+                <div class="slds-align_absolute-center slds-p-around_medium">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <p>{errorMessage}</p>
+                </div>
+            </template>
+
+            <template if:true={isEmpty}>
+                <div class="slds-align_absolute-center slds-p-around_large">
+                    <div class="slds-text-align_center">
+                        <p class="slds-text-body_regular slds-text-color_weak">No activity data available yet.</p>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_small">
+                            Click Refresh to fetch the latest data from the Copado AI API.
+                        </p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={hasData}>
+                <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_medium">
+                    Last updated: {lastFetchTime}
+                </p>
+                <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <div class="kpi-tile slds-box slds-text-align_center">
+                            <p class="slds-text-heading_large slds-text-color_brand">{totalPrompts}</p>
+                            <p class="slds-text-title slds-text-color_weak">Total Prompts</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <div class="kpi-tile slds-box slds-text-align_center">
+                            <p class="slds-text-heading_large slds-text-color_brand">{totalTokens}</p>
+                            <p class="slds-text-title slds-text-color_weak">Total Tokens</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <div class="kpi-tile slds-box slds-text-align_center">
+                            <p class="slds-text-heading_large slds-text-color_brand">{activeUsers}</p>
+                            <p class="slds-text-title slds-text-color_weak">Active Users</p>
+                        </div>
+                    </div>
+                </div>
+                <lightning-accordion allow-multiple-sections-open>
+                    <lightning-accordion-section name="raw" label="Raw API Response">
+                        <pre class="raw-response">{rawResponse}</pre>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </template>
+
+        </div>
+        <div slot="footer">
+            <lightning-button
+                label="Refresh"
+                icon-name="utility:refresh"
+                onclick={handleRefresh}
+                disabled={isLoading}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
+

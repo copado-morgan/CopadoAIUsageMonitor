@@ -1,0 +1,25 @@
+.kpi-tile {
+    background-color: #f4f6f9;
+    border-radius: 0.25rem;
+    padding: 1.5rem 1rem;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.raw-response {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #f4f6f9;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0;
+}
+
