@@ -1,0 +1,6 @@
+# This file specifies files that should be ignored during Salesforce CLI operations.
+# More info: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+
+**/profiles/**
+**/connectedApps/**
+**/.gitkeep
